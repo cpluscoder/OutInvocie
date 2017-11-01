@@ -1,0 +1,18 @@
+// Collecter.idl : Collecter 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(Collecter.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(319C358B-8D63-46A5-961D-C653C8FA6B78),
+	version(1.0),
+]
+library CollecterLib
+{
+	importlib("stdole2.tlb");
+};
+

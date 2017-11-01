@@ -1,0 +1,18 @@
+// Upgrade.idl : Upgrade 的 IDL 源
+//
+
+// 此文件将由 MIDL 工具处理以
+// 产生类型库(Upgrade.tlb)和封送处理代码。
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	uuid(6BA9A2FE-757E-4C7B-A84A-95290DB1EEA6),
+	version(1.0),
+]
+library UpgradeLib
+{
+	importlib("stdole2.tlb");
+};
+
