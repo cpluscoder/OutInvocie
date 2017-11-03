@@ -1,0 +1,57 @@
+comexp.msc -32
+
+E:\StudyFiles\OutInvocie\bin\Debug>regsvr32 DiscoverPS.dll
+
+E:\StudyFiles\OutInvocie\bin\Debug>regsvr32 /u DiscoverPS.dll
+
+
+Discover_d.exe /Service
+net start Discover_d
+
+net stop Discover_d
+Discover_d.exe /UnRegServer
+
+
+
+
+
+
+
+
+
+
+
+
+#include "atlcomcli.h"
+#import "FirstCOM.dll" no_namespace
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+    CoInitialize(NULL);
+    CLSID clsid;
+    CLSIDFromProgID(OLESTR("FirstCOM.math.1"),&clsid);
+    CComPtr<IFirstClass> pFirstClass;//ÖÇÄÜÖ¸Õë
+    pFirstClass.CoCreateInstance(clsid);
+    long ret = pFirstClass->Add(1,2);
+    printf("%d\n",ret);
+    pFirstClass.Release();
+    CoUninitialize();
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
