@@ -1,9 +1,20 @@
 comexp.msc -32
+dcomcnfg
 
 E:\StudyFiles\OutInvocie\bin\Debug>regsvr32 DiscoverPS.dll
 
 E:\StudyFiles\OutInvocie\bin\Debug>regsvr32 /u DiscoverPS.dll
 
+
+service不能部署,也不能被删除,使用SC命令也不奏效。是windows service database缓存的原因，reboot computer可以完美解决问题。也可以尝试:
+1 关闭所有windows service控制面板
+2 查找windows service的PID: SC queryex service_name
+3 杀掉进程: taskkill /PID service_pid /f
+
+--查询service的PID
+SC queryex MySQL
+
+sc delete ServiceName
 
 Discover_d.exe /Service
 net start Discover_d
@@ -12,14 +23,19 @@ net stop Discover_d
 Discover_d.exe /UnRegServer
 
 
+D:\TestCode\OutInvoiceService\bin\Debug
+OutInvoiceService.exe /UnRegServer
+sc delete hupf_service
 
 
+sc delete noteupdateservice
+"C:\Program Files (x86)\anote\anote.exe" -svc
 
+sc delete QQPCRTP
+F:\OsUpdate\QQPCMgr\12.5.18746.501\QQPCRtp.exe
 
-
-
-
-
+sc delete ServiceName-hupf
+D:\TestCode\TestSCM\bin\Debug\TestSCM.exe
 
 
 #include "atlcomcli.h"
