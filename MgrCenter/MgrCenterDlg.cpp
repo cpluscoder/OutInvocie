@@ -63,6 +63,7 @@ BEGIN_MESSAGE_MAP(CMgrCenterDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BTN_TEST, &CMgrCenterDlg::OnBnClickedBtnTest)
 END_MESSAGE_MAP()
 
 
@@ -151,3 +152,31 @@ HCURSOR CMgrCenterDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CMgrCenterDlg::OnBnClickedBtnTest()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	/// 内核对象Event(命名)使用
+	{
+		TRACE("准备打开内核对象\n");
+
+		///	打开内核对象
+		HANDLE g_SessionEvent = ::OpenEvent(EVENT_MODIFY_STATE | EVENT_ALL_ACCESS, FALSE, "Global\\ATLDemoGlobalSessionEvent");
+
+		///	获取错误代码
+		DWORD dwErr = ::GetLastError();
+		if(dwErr == ERROR_FILE_NOT_FOUND)
+		{
+			/// 错误代码0x00000002:系统找不到指定的文件
+			TRACE("内核对象不存在!\n");
+			return;
+		}
+
+		///	等待内核对象
+		::WaitForSingleObject(g_SessionEvent, INFINITE);
+
+		///	等待成功
+		TRACE("打开内核对象成功!\n");
+	}
+}
